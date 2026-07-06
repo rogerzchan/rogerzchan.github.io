@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import Flag from '../components/Flag.astro';
 
 const experience = [
   {
@@ -55,7 +56,10 @@ const projects = [
   {
     num: '01',
     title: 'Iqaluit Smart Water Delivery',
-    blurb: 'Capstone with the City of Iqaluit — a mobile app + IoT + ARIMA forecasting to modernize trucked water delivery for 470+ households, cutting operational cost by $250K/year.',
+    flag: 'nunavut',
+    place: 'Nunavut, Canada',
+    blurb:
+      'Capstone with the <strong>City of Iqaluit</strong> — a <em>mobile app + IoT + ARIMA forecasting</em> stack to modernize trucked water delivery for <strong>470+ households</strong>. Real-time tank telemetry, driver routing, and demand prediction cut projected operational cost by <strong>$250K / year</strong>.',
     icons: ['truck', 'inukshuk', 'phone'],
     tags: ['Firebase', 'IoT', 'ARIMA', 'Mobile'],
     href: 'https://rogerzchan.github.io/iqaluit-smart-water/',
@@ -63,7 +67,8 @@ const projects = [
   {
     num: '02',
     title: 'Heart Disease Prediction',
-    blurb: 'Built a supervised classifier on clinical patient data to predict heart-disease risk — feature engineering, model selection, and evaluation in Python.',
+    blurb:
+      'Built a <em>supervised classifier</em> on <strong>clinical patient data</strong> to predict heart-disease risk — feature engineering, model selection, and evaluation in <strong>Python</strong>. Compared <em>tree-based models vs. logistic regression</em> to isolate which clinical features actually move the prediction.',
     icons: ['brain', 'chart'],
     tags: ['Python', 'scikit-learn', 'ML'],
     href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Heart%20Disease%20Prediction%20.ipynb',
@@ -71,7 +76,10 @@ const projects = [
   {
     num: '03',
     title: 'S&P 500 Stock Predictor',
-    blurb: 'Time-series model that forecasts S&P 500 movements from historical price data — feature construction, backtesting, and error analysis.',
+    flag: 'us',
+    place: 'US Markets',
+    blurb:
+      '<strong>Time-series model</strong> that forecasts <em>S&P 500</em> movements from historical price data — feature construction, backtesting, and error analysis. A study in how far <em>pattern-based prediction</em> can push against genuinely <strong>noisy financial signal</strong>.',
     icons: ['chart', 'code'],
     tags: ['Python', 'Time Series', 'Finance'],
     href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Simple%20Sp500%20Stock%20predictor%20.ipynb',
@@ -79,7 +87,10 @@ const projects = [
   {
     num: '04',
     title: 'Spotify Data Analysis',
-    blurb: 'Exploratory analysis of Spotify listening data — audio-feature correlations, genre patterns, and what actually predicts a track’s popularity.',
+    flag: 'sweden',
+    place: 'Spotify · Stockholm',
+    blurb:
+      '<strong>Exploratory analysis</strong> of Spotify listening data — <em>audio-feature correlations</em>, genre patterns, and <em>what actually predicts a track’s popularity</em>. Cleaned messy metadata and built visualizations to surface the <strong>counter-intuitive signals</strong> hiding in the catalog.',
     icons: ['chart', 'database'],
     tags: ['Python', 'Pandas', 'EDA'],
     href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Spotify%20Data%20Analysis%20.ipynb',
@@ -131,8 +142,10 @@ const projects = [
             {experience.map((e) => (
               <li class="stack__row">
                 <div class="stack__lead">
-                  <span class="stack__role">{e.role}</span>
-                  <span class="stack__org">{e.org} · {e.place}</span>
+                  <span class="stack__role">
+                    {e.org}<span class="stack__role-sub"> — {e.role}</span>
+                  </span>
+                  <span class="stack__org">{e.place}</span>
                 </div>
                 <span class="stack__when">{e.when}</span>
               </li>
@@ -190,7 +203,13 @@ const projects = [
               </div>
             )}
             <h3 class="card__title">{p.title}</h3>
-            <p class="card__blurb">{p.blurb}</p>
+            {p.flag && (
+              <div class="card__meta">
+                <span class="card__flag"><Flag name={p.flag} /></span>
+                <span>{p.place}</span>
+              </div>
+            )}
+            <p class="card__blurb" set:html={p.blurb} />
             <ul class="card__tags">
               {p.tags.map((t) => <li>{t}</li>)}
             </ul>
