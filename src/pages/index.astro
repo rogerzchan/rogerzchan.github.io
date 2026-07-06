@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const experience = [
+  {
+    role: 'Data Science Intern',
+    org: 'Wealthsimple',
+    place: 'Toronto, ON',
+    when: 'Jan 2026 — Present',
+  },
+  {
+    role: 'Data Science Intern',
+    org: 'Vale Base Metals',
+    place: 'Toronto, ON',
+    when: 'May 2024 — Dec 2025',
+  },
+  {
+    role: 'Data Science Intern',
+    org: 'Ontario Securities Commission',
+    place: 'Toronto, ON',
+    when: 'May 2023 — Dec 2023',
+  },
+];
+
+const education = [
+  {
+    role: 'Master of Management Engineering — Data Science',
+    org: 'University of Waterloo, Faculty of Engineering',
+    place: 'Waterloo, ON',
+    when: 'Expected Sept 2027',
+  },
+  {
+    role: 'Bachelor of Science, Minor in Computing',
+    org: 'University of Waterloo, Faculty of Health',
+    place: 'Waterloo, ON',
+    when: 'Graduated 2024',
+  },
+];
+
+const skills = [
+  {
+    group: 'Data',
+    items:
+      'Python · Redshift · Snowflake · PostgreSQL · dbt · Airflow · Fivetran · Preset (Superset) · Docker · Kubernetes · AWS (Bedrock, EFS, S3) · MLflow',
+  },
+  {
+    group: 'AI / ML',
+    items:
+      'PyTorch · Transformers · Claude (Bedrock) · LangChain · OpenAI · scikit-learn · spaCy · DVC · Streamlit',
+  },
+];
+
+const projects = [
+  {
+    num: '01',
+    title: 'Iqaluit Smart Water Delivery',
+    blurb: 'Capstone with the City of Iqaluit — a mobile app + IoT + ARIMA forecasting to modernize trucked water delivery for 470+ households, cutting operational cost by $250K/year.',
+    icons: ['truck', 'inukshuk', 'phone'],
+    tags: ['Firebase', 'IoT', 'ARIMA', 'Mobile'],
+    href: 'https://github.com/rogerzchan/iqaluit-smart-water',
+  },
+  {
+    num: '02',
+    title: 'Heart Disease Prediction',
+    blurb: 'Built a supervised classifier on clinical patient data to predict heart-disease risk — feature engineering, model selection, and evaluation in Python.',
+    icons: ['brain', 'chart'],
+    tags: ['Python', 'scikit-learn', 'ML'],
+    href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Heart%20Disease%20Prediction%20.ipynb',
+  },
+  {
+    num: '03',
+    title: 'S&P 500 Stock Predictor',
+    blurb: 'Time-series model that forecasts S&P 500 movements from historical price data — feature construction, backtesting, and error analysis.',
+    icons: ['chart', 'code'],
+    tags: ['Python', 'Time Series', 'Finance'],
+    href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Simple%20Sp500%20Stock%20predictor%20.ipynb',
+  },
+  {
+    num: '04',
+    title: 'Spotify Data Analysis',
+    blurb: 'Exploratory analysis of Spotify listening data — audio-feature correlations, genre patterns, and what actually predicts a track’s popularity.',
+    icons: ['chart', 'database'],
+    tags: ['Python', 'Pandas', 'EDA'],
+    href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Spotify%20Data%20Analysis%20.ipynb',
+  },
+];
+---
+
+<Layout>
+  <nav class="nav">
+    <a href="/" class="nav__brand">
+      <span class="nav__dot"></span>
+      roger chan
+    </a>
+    <div class="nav__links">
+      <a href="#about" class="nav__link">about</a>
+      <a href="#work" class="nav__link">work</a>
+      <a href="#contact" class="nav__link">contact</a>
+    </div>
+  </nav>
+
+  <section id="about" class="section section--first wrap">
+    <div class="section__label">About</div>
+
+    <div class="about">
+      <aside class="about__aside reveal">
+        <div class="about__photo">
+          <img src="/img/roger.jpg" alt="Roger Chan" />
+        </div>
+        <div class="about__intro">
+          <h1 class="about__name">
+            <span class="about__name-line"><span>Roger</span></span>
+            <span class="about__name-line"><span>Chan.</span></span>
+          </h1>
+          <p class="about__role">
+            <span class="about__dot"></span>
+            Data Scientist · Toronto
+          </p>
+          <a href="/roger-chan-resume.pdf" target="_blank" rel="noopener" class="about__cv">
+            Download CV
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </aside>
+
+      <div class="about__stacks">
+        <div class="stack reveal">
+          <h3 class="stack__title">Experience</h3>
+          <ul class="stack__list">
+            {experience.map((e) => (
+              <li class="stack__row">
+                <div class="stack__lead">
+                  <span class="stack__role">{e.role}</span>
+                  <span class="stack__org">{e.org} · {e.place}</span>
+                </div>
+                <span class="stack__when">{e.when}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="stack reveal">
+          <h3 class="stack__title">Education</h3>
+          <ul class="stack__list">
+            {education.map((e) => (
+              <li class="stack__row">
+                <div class="stack__lead">
+                  <span class="stack__role">{e.role}</span>
+                  <span class="stack__org">{e.org}</span>
+                </div>
+                <span class="stack__when">{e.when}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="stack reveal">
+          <h3 class="stack__title">Skills</h3>
+          <ul class="stack__list stack__list--skills">
+            {skills.map((s) => (
+              <li class="stack__skill">
+                <span class="stack__skill-key">{s.group}</span>
+                <span class="stack__skill-val">{s.items}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="section wrap">
+    <div class="section__label">Projects</div>
+    <p class="section__intro">A selection of things I've built and analyzed.</p>
+
+    <ul class="cards">
+      {projects.map((p) => (
+        <li class="card reveal">
+          <a href={p.href} class="card__link" target="_blank" rel="noopener">
+            <div class="card__top">
+              <span class="card__num">{p.num}</span>
+              <span class="card__arrow" aria-hidden="true">↗</span>
+            </div>
+            {p.icons && p.icons.length > 0 && (
+              <div class="card__icons">
+                {p.icons.map((n) => (
+                  <span class="card__icon"><Icon name={n} /></span>
+                ))}
+              </div>
+            )}
+            <h3 class="card__title">{p.title}</h3>
+            <p class="card__blurb">{p.blurb}</p>
+            <ul class="card__tags">
+              {p.tags.map((t) => <li>{t}</li>)}
+            </ul>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="contact" class="contact wrap">
+    <div class="section__label">Contact</div>
+    <h2 class="contact__title">
+      Let's <em>talk.</em>
+    </h2>
+    <a href="mailto:roger.chan@uwaterloo.ca" class="contact__email">
+      roger.chan@uwaterloo.ca →
+    </a>
+  </section>
+
+  <footer class="foot">
+    <div>© 2026 Roger Chan</div>
+    <div class="foot__links">
+      <a href="https://www.linkedin.com/in/rogerzchan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/rogerzchan" target="_blank" rel="noopener">GitHub</a>
+      <a href="/roger-chan-resume.pdf" target="_blank" rel="noopener">CV</a>
+    </div>
+  </footer>
+</Layout>
