@@ -67,6 +67,9 @@ const projects = [
     tags: ['Causal Inference', 'XGBoost', 'Qini', 'Bootstrap CI', 'Python'],
     href: 'https://rogerzchan.github.io/uplift-modeling-criteo/paper/paper.html',
     cta: 'Read the paper',
+    image: '/img/paper-preview.png',
+    imageAlt: 'First page of the Same Recipe, Different Answer paper — masthead, title, and abstract.',
+    imageTint: 'paper',
   },
   {
     num: '02',
@@ -81,6 +84,9 @@ const projects = [
     tags: ['Firebase', 'IoT', 'ARIMA', 'Mobile', 'Offline-first'],
     href: 'https://rogerzchan.github.io/iqaluit-smart-water/',
     cta: 'Explore the project',
+    image: '/img/iqaluit-preview.png',
+    imageAlt: 'Iqaluit Smart Water ops dashboard — households sidebar, live map with truck routes, and dispatch panel.',
+    imageTint: 'dark',
   },
   {
     num: '03',
@@ -196,38 +202,47 @@ const projects = [
 
     <ul class="cards">
       {projects.map((p) => (
-        <li class={`card reveal${p.wide ? ' card--wide' : ''}`}>
+        <li class={`card reveal${p.wide ? ' card--wide' : ''}${p.image ? ' card--has-preview' : ''}`}>
           <a href={p.href} class="card__link" target="_blank" rel="noopener">
             <div class="card__top">
               <span class="card__num">{p.num}</span>
               {p.kind && <span class="card__kind">{p.kind}</span>}
               <span class="card__arrow" aria-hidden="true">↗</span>
             </div>
-            {p.icons && p.icons.length > 0 && (
-              <div class="card__icons">
-                {p.icons.map((n) => (
-                  <span class="card__icon"><Icon name={n} /></span>
-                ))}
+            <div class="card__body">
+              <div class="card__content">
+                {p.icons && p.icons.length > 0 && (
+                  <div class="card__icons">
+                    {p.icons.map((n) => (
+                      <span class="card__icon"><Icon name={n} /></span>
+                    ))}
+                  </div>
+                )}
+                <h3 class="card__title">{p.title}</h3>
+                {p.subtitle && <p class="card__subtitle">{p.subtitle}</p>}
+                {p.flag && (
+                  <div class="card__meta">
+                    <span class="card__flag"><Flag name={p.flag} /></span>
+                    <span>{p.place}</span>
+                  </div>
+                )}
+                <p class="card__blurb" set:html={p.blurb} />
+                <ul class="card__tags">
+                  {p.tags.map((t) => <li>{t}</li>)}
+                </ul>
+                {p.cta && (
+                  <span class="card__cta">
+                    {p.cta}
+                    <span aria-hidden="true">→</span>
+                  </span>
+                )}
               </div>
-            )}
-            <h3 class="card__title">{p.title}</h3>
-            {p.subtitle && <p class="card__subtitle">{p.subtitle}</p>}
-            {p.flag && (
-              <div class="card__meta">
-                <span class="card__flag"><Flag name={p.flag} /></span>
-                <span>{p.place}</span>
-              </div>
-            )}
-            <p class="card__blurb" set:html={p.blurb} />
-            <ul class="card__tags">
-              {p.tags.map((t) => <li>{t}</li>)}
-            </ul>
-            {p.cta && (
-              <span class="card__cta">
-                {p.cta}
-                <span aria-hidden="true">→</span>
-              </span>
-            )}
+              {p.image && (
+                <div class={`card__preview card__preview--${p.imageTint || 'dark'}`}>
+                  <img src={p.image} alt={p.imageAlt || ''} loading="lazy" />
+                </div>
+              )}
+            </div>
           </a>
         </li>
       ))}
