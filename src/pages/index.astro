@@ -55,17 +55,35 @@ const skills = [
 const projects = [
   {
     num: '01',
+    wide: true,
+    kind: 'Research paper',
+    title: 'Same Recipe, Different Answer',
+    subtitle: 'Base-Learner Sensitivity in Uplift Meta-Learner Benchmarks',
+    flag: 'france',
+    place: 'Criteo Uplift · 14M rows',
+    blurb:
+      'A two-part empirical paper. Part 1 <em>replicates</em> <strong>Diemert et al. (2018)</strong> on the <strong>14M-row Criteo Uplift</strong> dataset. Part 2 asks the question the field skips: <em>what happens when you swap the base learner underneath each meta-learner recipe?</em> The rankings <strong>break</strong> — Class-Transformation swings <strong>82% in Qini</strong> just by changing engines (LR → XGBoost), and the S-learner on Hillstrom moves <strong>5×</strong>. Only <em>Causal Forest</em> survives the swap. A study in <strong>which benchmark claims actually transfer</strong> — and which are artifacts of the model underneath.',
+    icons: ['paper', 'split', 'scale'],
+    tags: ['Causal Inference', 'XGBoost', 'Qini', 'Bootstrap CI', 'Python'],
+    href: 'https://rogerzchan.github.io/uplift-modeling-criteo/paper/paper.html',
+    cta: 'Read the paper',
+  },
+  {
+    num: '02',
+    wide: true,
+    kind: 'Capstone · Deployed',
     title: 'Iqaluit Smart Water Delivery',
     flag: 'nunavut',
     place: 'Nunavut, Canada',
     blurb:
-      'Capstone with the <strong>City of Iqaluit</strong> — a <em>mobile app + IoT + ARIMA forecasting</em> stack to modernize trucked water delivery for <strong>470+ households</strong>. Real-time tank telemetry, driver routing, and demand prediction cut projected operational cost by <strong>$250K / year</strong>.',
+      'Capstone with the <strong>City of Iqaluit</strong> — a <em>mobile app + IoT + ARIMA forecasting</em> stack to modernize trucked water delivery for <strong>470+ households</strong> above the treeline. Real-time tank telemetry, driver routing, and demand prediction cut projected operational cost by <strong>$250K / year</strong>. Built the <em>offline-first mobile UX</em>, the tank-sensor backend, and the <strong>ARIMA model that anticipates when a house is about to run dry</strong> — before the driver has to guess.',
     icons: ['truck', 'inukshuk', 'phone'],
-    tags: ['Firebase', 'IoT', 'ARIMA', 'Mobile'],
+    tags: ['Firebase', 'IoT', 'ARIMA', 'Mobile', 'Offline-first'],
     href: 'https://rogerzchan.github.io/iqaluit-smart-water/',
+    cta: 'Explore the project',
   },
   {
-    num: '02',
+    num: '03',
     title: 'Heart Disease Prediction',
     blurb:
       'Built a <em>supervised classifier</em> on <strong>clinical patient data</strong> to predict heart-disease risk — feature engineering, model selection, and evaluation in <strong>Python</strong>. Compared <em>tree-based models vs. logistic regression</em> to isolate which clinical features actually move the prediction.',
@@ -74,7 +92,7 @@ const projects = [
     href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Heart%20Disease%20Prediction%20.ipynb',
   },
   {
-    num: '03',
+    num: '04',
     title: 'S&P 500 Stock Predictor',
     flag: 'us',
     place: 'US Markets',
@@ -83,17 +101,6 @@ const projects = [
     icons: ['chart', 'code'],
     tags: ['Python', 'Time Series', 'Finance'],
     href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Simple%20Sp500%20Stock%20predictor%20.ipynb',
-  },
-  {
-    num: '04',
-    title: 'Spotify Data Analysis',
-    flag: 'sweden',
-    place: 'Spotify · Stockholm',
-    blurb:
-      '<strong>Exploratory analysis</strong> of Spotify listening data — <em>audio-feature correlations</em>, genre patterns, and <em>what actually predicts a track’s popularity</em>. Cleaned messy metadata and built visualizations to surface the <strong>counter-intuitive signals</strong> hiding in the catalog.',
-    icons: ['chart', 'database'],
-    tags: ['Python', 'Pandas', 'EDA'],
-    href: 'https://github.com/rogerzchan/RogerProjects/blob/main/Spotify%20Data%20Analysis%20.ipynb',
   },
 ];
 ---
@@ -189,10 +196,11 @@ const projects = [
 
     <ul class="cards">
       {projects.map((p) => (
-        <li class="card reveal">
+        <li class={`card reveal${p.wide ? ' card--wide' : ''}`}>
           <a href={p.href} class="card__link" target="_blank" rel="noopener">
             <div class="card__top">
               <span class="card__num">{p.num}</span>
+              {p.kind && <span class="card__kind">{p.kind}</span>}
               <span class="card__arrow" aria-hidden="true">↗</span>
             </div>
             {p.icons && p.icons.length > 0 && (
@@ -203,6 +211,7 @@ const projects = [
               </div>
             )}
             <h3 class="card__title">{p.title}</h3>
+            {p.subtitle && <p class="card__subtitle">{p.subtitle}</p>}
             {p.flag && (
               <div class="card__meta">
                 <span class="card__flag"><Flag name={p.flag} /></span>
@@ -213,6 +222,12 @@ const projects = [
             <ul class="card__tags">
               {p.tags.map((t) => <li>{t}</li>)}
             </ul>
+            {p.cta && (
+              <span class="card__cta">
+                {p.cta}
+                <span aria-hidden="true">→</span>
+              </span>
+            )}
           </a>
         </li>
       ))}

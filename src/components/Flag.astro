@@ -52,6 +52,14 @@ const { name } = Astro.props;
   </svg>
 )}
 
+{name === 'france' && (
+  <svg viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="20" height="40" fill="#0055A4" />
+    <rect x="20" width="20" height="40" fill="#F5F1E8" />
+    <rect x="40" width="20" height="40" fill="#EF4135" />
+  </svg>
+)}
+
 {name === 'sweden' && (
   <svg viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">
     <rect width="60" height="40" fill="#0060A8" />

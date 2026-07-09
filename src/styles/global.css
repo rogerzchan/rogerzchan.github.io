@@ -658,6 +658,89 @@ body::before {
   background: color-mix(in oklab, var(--bg) 50%, transparent);
 }
 
+/* ---------- featured / wide project cards ---------- */
+.card--wide { grid-column: 1 / -1; }
+
+.card--wide .card__link {
+  padding: 2.5rem 2.5rem 2rem;
+  background:
+    radial-gradient(
+      120% 90% at 0% 0%,
+      color-mix(in oklab, var(--accent) 6%, transparent) 0%,
+      transparent 55%
+    ),
+    var(--bg-elev);
+  border-color: color-mix(in oklab, var(--accent) 15%, var(--rule));
+}
+
+.card--wide .card__title {
+  font-size: 2rem;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.card--wide .card__blurb {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+.card--wide .card__icons { margin-bottom: 1.75rem; }
+.card--wide .card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+}
+.card--wide .card__icon svg { width: 26px; height: 26px; }
+
+.card__kind {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0.3rem 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--rule));
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--accent) 7%, transparent);
+  margin-left: auto;
+  margin-right: 0.75rem;
+}
+
+.card__subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--fg-dim);
+  margin: 0 0 1rem;
+  max-width: 60ch;
+}
+
+.card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: gap 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+.card__cta span { transition: transform 0.4s var(--ease-out); }
+.card__link:hover .card__cta { gap: 0.85rem; }
+.card__link:hover .card__cta span { transform: translateX(4px); }
+
+@media (max-width: 720px) {
+  .card--wide .card__link { padding: 2rem 1.5rem 1.5rem; }
+  .card--wide .card__title { font-size: 1.6rem; }
+  .card--wide .card__blurb { font-size: 0.98rem; }
+  .card__kind { margin-right: 0.5rem; }
+}
+
 /* ---------- footer / contact ---------- */
 .contact {
   padding-block: clamp(6rem, 15vh, 10rem);
